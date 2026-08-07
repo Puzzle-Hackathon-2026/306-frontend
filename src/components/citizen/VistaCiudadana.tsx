@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import { horarios } from '../../data/ciudadana'
-import ColoniaSelector from './ColoniaSelector'
-import EstadoTiempoReal from './EstadoTiempoReal'
-import CalendarioSemanal from './CalendarioSemanal'
-import ReportarProblema from './ReportarProblema'
-import Notificaciones from './Notificaciones'
+import { useState } from "react";
+import { horarios } from "../../data/ciudadana";
+import ColoniaSelector from "./ColoniaSelector";
+import EstadoTiempoReal from "./EstadoTiempoReal";
+import CalendarioSemanal from "./CalendarioSemanal";
+import ReportarProblema from "./ReportarProblema";
+import Notificaciones from "./Notificaciones";
 
 export default function VistaCiudadana() {
-  const [colonia, setColonia] = useState('Col. Las Palmas')
-  const info = horarios[colonia]
+  const [colonia, setColonia] = useState("Col. Las Palmas");
+  const info = horarios[colonia];
 
   return (
     <section className="space-y-6">
@@ -18,7 +18,9 @@ export default function VistaCiudadana() {
             Tu colonia
           </p>
           <h1 className="font-display text-3xl font-800 text-[#111A14] leading-none">
-            Tu colonia,<br />tu recolección.
+            Tu colonia,
+            <br />
+            tu recolección.
           </h1>
         </div>
         <ColoniaSelector value={colonia} onChange={setColonia} />
@@ -33,5 +35,5 @@ export default function VistaCiudadana() {
 
       <Notificaciones />
     </section>
-  )
+  );
 }
