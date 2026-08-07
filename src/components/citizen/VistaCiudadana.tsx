@@ -3,8 +3,6 @@ import { horarios } from "../../data/ciudadana";
 import ColoniaSelector from "./ColoniaSelector";
 import EstadoTiempoReal from "./EstadoTiempoReal";
 import CalendarioSemanal from "./CalendarioSemanal";
-import ReportarProblema from "./ReportarProblema";
-import Notificaciones from "./Notificaciones";
 
 export default function VistaCiudadana() {
   const [colonia, setColonia] = useState("Col. Las Palmas");
@@ -28,12 +26,12 @@ export default function VistaCiudadana() {
 
       <EstadoTiempoReal colonia={colonia} info={info} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div>
+        {/* barra de calendario horizontal, decida marcelo */}
         <CalendarioSemanal info={info} />
-        <ReportarProblema colonia={colonia} />
+        {/* reportes se quitaron de aquí, van en un popup */}
       </div>
-
-      <Notificaciones />
+      {/* notificaciones se quitaron de aquí, van en un botón cascada */}
     </section>
   );
 }
