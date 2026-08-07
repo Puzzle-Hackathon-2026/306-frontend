@@ -1,3 +1,4 @@
+import MapaAdmin from "./mapa/MapaAdmin";
 import KpisOperativo from "./KpisOperativo";
 import MapaCobertura from "./MapaCobertura";
 import EstadoFlota from "./EstadoFlota";
@@ -9,11 +10,6 @@ import AlertasZonas from "../comunidad/AlertasZonas";
 import MapaBrechas from "../comunidad/MapaBrechas";
 import CoberturaKPIs from "../comunidad/CoberturaKPIs";
 
-/**
- * Vista interna, servida en /operativo. Todavía no tiene autenticación:
- * cuando se implementen cuentas admin, envolver esta vista en un guard
- * de sesión (redirigir a "/" si no hay sesión admin válida).
- */
 export default function PanelOperativo() {
   return (
     <section className="space-y-6">
@@ -28,6 +24,8 @@ export default function PanelOperativo() {
           Miércoles 6 de agosto, 2026 · 10:28 hrs
         </p>
       </div>
+
+      <MapaAdmin />
 
       <KpisOperativo />
 
