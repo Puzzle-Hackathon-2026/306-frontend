@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   logros,
-  PUNTOS_USUARIO,
   obtenerNivel,
   obtenerAccionesPuntos,
 } from "../../data/comunidad";
@@ -9,13 +8,20 @@ import {
 export default function IncentivosBanner() {
   const [mostrarInfo, setMostrarInfo] = useState(false);
 
+  // Temporal hasta conectar Supabase
+  const usuario = {
+    id: "",
+    nombre: "Ana Rodríguez",
+    puntos: 60,
+  };
+
   const desbloqueados = logros.filter((l) => l.desbloqueado);
 
-  const nivel = obtenerNivel(PUNTOS_USUARIO);
+  const nivel = obtenerNivel(usuario.puntos);
 
-  const faltan = Math.max(nivel.meta - PUNTOS_USUARIO, 0);
+  const faltan = Math.max(nivel.meta - usuario.puntos, 0);
 
-  const progreso = Math.min((PUNTOS_USUARIO / nivel.meta) * 100, 100);
+  const progreso = Math.min((usuario.puntos / nivel.meta) * 100, 100);
 
   return (
     <div className="relative rounded-xl border border-[#B8D9C5] bg-[#F4FBF6] p-4">
@@ -34,7 +40,7 @@ export default function IncentivosBanner() {
         </div>
 
         <span className="text-lg font-bold text-[#16643A]">
-          {PUNTOS_USUARIO} pts
+          {usuario.puntos} pts
         </span>
       </div>
 
@@ -47,11 +53,11 @@ export default function IncentivosBanner() {
         <span>Próximo nivel: {nivel.siguiente ?? "Nivel máximo"}</span>
 
         <span>
-          {PUNTOS_USUARIO}/{nivel.meta} pts
+          {usuario.puntos}/{nivel.meta} pts
         </span>
       </div>
 
-      <div className="h-3 bg-white rounded-full border border-[#B8D9C5] overflow-hidden">
+      <div className="h-3 rounded-full bg-white border border-[#B8D9C5] overflow-hidden">
         <div
           className="h-full bg-[#16643A] transition-all"
           style={{ width: `${progreso}%` }}
@@ -60,7 +66,7 @@ export default function IncentivosBanner() {
 
       <p className="text-[10px] text-[#5A6B5E] mt-2">
         {nivel.siguiente
-          ? `${faltan} puntos para subir de nivel`
+          ? `${faltan} puntos para subir a ${nivel.siguiente}`
           : "¡Has alcanzado el nivel máximo!"}
       </p>
 
@@ -85,7 +91,7 @@ export default function IncentivosBanner() {
           <div className="mb-4">
             <p className="font-semibold text-xs mb-2">Niveles</p>
 
-            <ul className="text-xs space-y-1">
+            <ul className="space-y-1 text-xs">
               <li>🌱 Reciclador Novato (0 - 99)</li>
               <li>♻️ Separador Responsable (100 - 249)</li>
               <li>🌿 Guardián Verde (250 - 499)</li>
@@ -95,7 +101,9 @@ export default function IncentivosBanner() {
           </div>
 
           <div>
-            <p className="font-semibold text-xs mb-2">Formas de ganar puntos</p>
+            <p className="font-semibold text-xs mb-2">
+              Formas de ganar EcoPuntos
+            </p>
 
             <ul className="space-y-1 text-xs">
               {obtenerAccionesPuntos().map((accion) => (
