@@ -46,13 +46,13 @@ export default function ReporteForm({ onClose }: Props) {
   return (
     <div className="space-y-3">
       <div>
-        <label className="block text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
           Categoría
         </label>
         <select
           value={categoria}
           onChange={(e) => setCategoria(e.target.value)}
-          className="w-full border border-[#D4E0D9] rounded-md px-3 py-2 text-sm text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A]"
+          className="w-full border border-[#D4E0D9] rounded-md px-3 py-2 text-[13px] text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A]"
         >
           <option value="">Seleccionar categoría...</option>
           {tiposProblema.map((t) => (
@@ -62,7 +62,7 @@ export default function ReporteForm({ onClose }: Props) {
       </div>
 
       <div>
-        <label className="block text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
           Descripción
         </label>
         <textarea
@@ -70,18 +70,18 @@ export default function ReporteForm({ onClose }: Props) {
           onChange={(e) => setDescripcion(e.target.value)}
           placeholder="Describe el problema con detalle..."
           rows={4}
-          className="w-full border border-[#D4E0D9] rounded-md px-3 py-2 text-sm text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] resize-none"
+          className="w-full border border-[#D4E0D9] rounded-md px-3 py-2 text-[13px] text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] resize-none"
         />
       </div>
 
-      <p className="text-xs text-[#5A6B5E]">
+      <p className="text-[10px] text-[#5A6B5E]">
         📍 La ubicación exacta se agregará automáticamente próximamente.
       </p>
 
       <button
         onClick={enviarReporte}
         disabled={!categoria}
-        className="w-full bg-[#16643A] text-white py-2.5 rounded-md text-sm font-semibold disabled:opacity-40 hover:bg-[#1A7A46] transition-colors"
+        className="w-full bg-[#16643A] text-white py-2.5 rounded-md text-[13px] font-semibold disabled:opacity-40 hover:bg-[#1A7A46] transition-colors"
       >
         Enviar reporte
       </button>

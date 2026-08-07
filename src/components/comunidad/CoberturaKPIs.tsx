@@ -14,14 +14,14 @@ export default function CoberturaKPIs() {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       {kpis.map((kpi) => (
         <div key={kpi.label} className="border border-[#D4E0D9] rounded-xl p-4 bg-white">
-          <div className="text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase mb-2">{kpi.label}</div>
+          <div className="text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase mb-2">{kpi.label}</div>
           <div
             className="font-display font-800 leading-tight"
             style={{ color: kpi.color, fontSize: kpi.small ? 16 : 30 }}
           >
             {kpi.value}
           </div>
-          <div className="text-xs text-[#5A6B5E] mt-1.5">{kpi.sub}</div>
+          <div className="text-[11px] text-[#5A6B5E] mt-1.5">{kpi.sub}</div>
         </div>
       ))}
     </div>
