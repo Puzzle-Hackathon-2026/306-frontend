@@ -47,6 +47,7 @@ export default function VistaCiudadana() {
                 <CalendarioSemanal
                     diaRecoleccion={coloniaSeleccionada?.diaRecoleccion ?? "Sin datos"}
                     diasRecoleccionIso={coloniaSeleccionada?.diasRecoleccionIso ?? []}
+                    horaInicioRecoleccion={coloniaSeleccionada?.horaInicioRecoleccion ?? null}
                 />
             </div>
         </section>
