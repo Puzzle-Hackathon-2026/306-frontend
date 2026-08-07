@@ -37,7 +37,7 @@ export default function MapaCoberturaLeaflet() {
             }}
           >
             <Popup>
-              <div className="text-sm">
+              <div className="text-[12px]">
                 <div className="font-semibold text-[#111A14]">{c.nombre}</div>
                 <div
                   style={{ color: colorEstado[c.estado] }}
@@ -51,7 +51,7 @@ export default function MapaCoberturaLeaflet() {
         ))}
       </SanPedroMap>
 
-      <div className="flex flex-wrap gap-3 mt-3 text-xs text-[#5A6B5E]">
+      <div className="flex flex-wrap gap-3 mt-3 text-[10px] text-[#5A6B5E]">
         {(Object.keys(colorEstado) as EstadoMapa[]).map((estado) => (
           <span key={estado} className="flex items-center gap-1.5">
             <span

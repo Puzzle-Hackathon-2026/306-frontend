@@ -44,7 +44,7 @@ export default function EstadoTiempoReal({ colonia, info }: Props) {
 
       <div className="flex-1">
         <div
-          className="text-xs font-semibold tracking-widest uppercase mb-1"
+          className="text-[11px] font-semibold tracking-widest uppercase mb-1"
           style={{ color: estado.color }}
         >
           Estado en tiempo real · {colonia}
@@ -52,7 +52,7 @@ export default function EstadoTiempoReal({ colonia, info }: Props) {
         <div className="font-display text-2xl font-700 text-[#111A14]">
           {estado.label}
         </div>
-        <div className="text-sm text-[#5A6B5E] mt-1">
+        <div className="text-[13px] text-[#5A6B5E] mt-1">
           Horario programado:{" "}
           <span className="font-semibold text-[#111A14]">{info.hora} hrs</span>
         </div>
@@ -61,7 +61,7 @@ export default function EstadoTiempoReal({ colonia, info }: Props) {
       {info.estado === "en camino" && (
         <div className="flex flex-col items-center gap-1">
           <div className="w-3 h-3 rounded-full bg-[#E8920A] animate-ping" />
-          <span className="text-xs text-[#E8920A] font-semibold">
+          <span className="text-[11px] text-[#E8920A] font-semibold">
             EN CAMINO
           </span>
         </div>

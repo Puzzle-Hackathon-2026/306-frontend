@@ -15,8 +15,8 @@ export default function Notificaciones() {
   return (
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display text-md font-700 text-[#111A14]">Notificaciones</h2>
-        <button onClick={() => setVisible(false)} className="text-sm text-[#5A6B5E] hover:text-[#111A14]">
+        <h2 className="font-display text-[15px] font-700 text-[#111A14]">Notificaciones</h2>
+        <button onClick={() => setVisible(false)} className="text-[12px] text-[#5A6B5E] hover:text-[#111A14]">
           Cerrar
         </button>
       </div>
@@ -31,8 +31,8 @@ export default function Notificaciones() {
               style={{ backgroundColor: colors.bg, borderColor: colors.border }}
             >
               <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: colors.dot }} />
-              <div className="flex-1 text-sm text-[#111A14]">{n.msg}</div>
-              <div className="text-xs text-[#5A6B5E] flex-shrink-0">{n.tiempo}</div>
+              <div className="flex-1 text-[13px] text-[#111A14]">{n.msg}</div>
+              <div className="text-[11px] text-[#5A6B5E] flex-shrink-0">{n.tiempo}</div>
             </div>
           )
         })}
