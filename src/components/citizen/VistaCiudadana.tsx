@@ -45,25 +45,19 @@ export default function VistaCiudadana() {
       )}
 
       {coloniaSeleccionada && (
-        <>
+        <div className="space-y-4">
           <EstadoTiempoReal
             colonia={coloniaSeleccionada.nombre}
             diasRecoleccionIso={coloniaSeleccionada.diasRecoleccionIso}
             horaInicioRecoleccion={coloniaSeleccionada.horaInicioRecoleccion}
             horaFinRecoleccion={coloniaSeleccionada.horaFinRecoleccion}
           />
-          <div>
-            <CalendarioSemanal
-              diaRecoleccion={coloniaSeleccionada.diaRecoleccion}
-              diasRecoleccionIso={coloniaSeleccionada.diasRecoleccionIso}
-            />
-            <div>
-                <CalendarioSemanal
-                    diaRecoleccion={coloniaSeleccionada?.diaRecoleccion ?? "Sin datos"}
-                    diasRecoleccionIso={coloniaSeleccionada?.diasRecoleccionIso ?? []}
-                    horaInicioRecoleccion={coloniaSeleccionada?.horaInicioRecoleccion ?? null}
-                />
-            </div>
-        </section>
-    );
+          <CalendarioSemanal
+            diaRecoleccion={coloniaSeleccionada.diaRecoleccion}
+            diasRecoleccionIso={coloniaSeleccionada.diasRecoleccionIso}
+          />
+        </div>
+      )}
+    </section>
+  );
 }
