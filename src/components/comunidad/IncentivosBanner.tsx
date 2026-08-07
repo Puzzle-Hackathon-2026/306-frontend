@@ -1,42 +1,112 @@
-import { logros, PUNTOS_USUARIO, PROXIMO_LOGRO_META } from '../../data/comunidad'
+import { useState } from "react";
+import {
+  logros,
+  PUNTOS_USUARIO,
+  obtenerNivel,
+  obtenerAccionesPuntos,
+} from "../../data/comunidad";
 
 export default function IncentivosBanner() {
-  const desbloqueados = logros.filter((l) => l.desbloqueado)
-  const faltan = PROXIMO_LOGRO_META - PUNTOS_USUARIO
+  const [mostrarInfo, setMostrarInfo] = useState(false);
+
+  const desbloqueados = logros.filter((l) => l.desbloqueado);
+
+  const nivel = obtenerNivel(PUNTOS_USUARIO);
+
+  const faltan = Math.max(nivel.meta - PUNTOS_USUARIO, 0);
+
+  const progreso = Math.min((PUNTOS_USUARIO / nivel.meta) * 100, 100);
 
   return (
-    <div className="rounded-2xl border border-[#B8D9C5] bg-gradient-to-r from-[#E8F2EC] to-[#FEF3E2] p-5 flex flex-col sm:flex-row items-center gap-5">
-      <div>
-        <div className="text-[11px] font-semibold tracking-widest text-[#5A6B5E] uppercase mb-0.5">
-          Tu cuenta · EcoVecino
+    <div className="relative rounded-xl border border-[#B8D9C5] bg-[#F4FBF6] p-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <h3 className="font-semibold text-[#16643A]">
+            Tu cuenta · EcoVecino
+          </h3>
+
+          <button
+            onClick={() => setMostrarInfo(!mostrarInfo)}
+            className="w-5 h-5 rounded-full bg-[#EAF6EE] text-[#16643A] text-xs font-bold"
+          >
+            i
+          </button>
         </div>
-        <div className="font-display text-3xl font-800 text-[#16643A]">{PUNTOS_USUARIO} pts</div>
-        <div className="text-[12px] text-[#5A6B5E] mt-1">
-          {desbloqueados.length} logros desbloqueados · Nivel: Reciclador Novato
-        </div>
+
+        <span className="text-lg font-bold text-[#16643A]">
+          {PUNTOS_USUARIO} pts
+        </span>
       </div>
 
-      <div className="flex-1 w-full">
-        <div className="flex justify-between text-[11px] text-[#5A6B5E] mb-1.5">
-          <span>Próximo logro: Guardián Verde</span>
-          <span>{PUNTOS_USUARIO}/{PROXIMO_LOGRO_META} pts</span>
-        </div>
-        <div className="h-3 bg-white rounded-full overflow-hidden border border-[#B8D9C5]">
-          <div
-            className="h-full bg-[#16643A] rounded-full transition-all"
-            style={{ width: `${(PUNTOS_USUARIO / PROXIMO_LOGRO_META) * 100}%` }}
-          />
-        </div>
-        <div className="text-[10px] text-[#5A6B5E] mt-1">{faltan} puntos más para desbloquear el siguiente logro</div>
+      <p className="text-xs text-[#5A6B5E] mb-3">
+        {desbloqueados.length} logros desbloqueados · Nivel:{" "}
+        <strong>{nivel.nombre}</strong>
+      </p>
+
+      <div className="flex justify-between text-[11px] text-[#5A6B5E] mb-1">
+        <span>Próximo nivel: {nivel.siguiente ?? "Nivel máximo"}</span>
+
+        <span>
+          {PUNTOS_USUARIO}/{nivel.meta} pts
+        </span>
       </div>
 
-      <div className="flex gap-2 flex-shrink-0">
+      <div className="h-3 bg-white rounded-full border border-[#B8D9C5] overflow-hidden">
+        <div
+          className="h-full bg-[#16643A] transition-all"
+          style={{ width: `${progreso}%` }}
+        />
+      </div>
+
+      <p className="text-[10px] text-[#5A6B5E] mt-2">
+        {nivel.siguiente
+          ? `${faltan} puntos para subir de nivel`
+          : "¡Has alcanzado el nivel máximo!"}
+      </p>
+
+      <div className="flex gap-2 mt-4">
         {desbloqueados.map((l) => (
-          <div key={l.id} title={l.titulo} className="w-9 h-9 rounded-lg bg-white border border-[#B8D9C5] flex items-center justify-center text-xl shadow-sm">
+          <div
+            key={l.id}
+            title={l.titulo}
+            className="w-9 h-9 rounded-lg bg-white border border-[#B8D9C5] flex items-center justify-center text-xl shadow-sm"
+          >
             {l.icono}
           </div>
         ))}
       </div>
+
+      {mostrarInfo && (
+        <div className="absolute top-full left-0 mt-3 w-[360px] rounded-xl border border-[#B8D9C5] bg-white shadow-xl p-4 z-50">
+          <h4 className="font-semibold text-[#16643A] mb-3">
+            ¿Cómo funcionan los EcoPuntos?
+          </h4>
+
+          <div className="mb-4">
+            <p className="font-semibold text-xs mb-2">Niveles</p>
+
+            <ul className="text-xs space-y-1">
+              <li>🌱 Reciclador Novato (0 - 99)</li>
+              <li>♻️ Separador Responsable (100 - 249)</li>
+              <li>🌿 Guardián Verde (250 - 499)</li>
+              <li>🌳 Embajador Ambiental (500 - 999)</li>
+              <li>🌎 Campeón Ambiental (1000+)</li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-semibold text-xs mb-2">Formas de ganar puntos</p>
+
+            <ul className="space-y-1 text-xs">
+              {obtenerAccionesPuntos().map((accion) => (
+                <li key={accion.titulo}>
+                  • {accion.titulo} (+{accion.puntos} pts)
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
