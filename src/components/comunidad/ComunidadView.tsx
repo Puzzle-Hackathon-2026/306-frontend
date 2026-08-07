@@ -1,8 +1,3 @@
-import CoberturaKPIs from "./CoberturaKPIs";
-import MapaBrechas from "./MapaBrechas";
-import AlertasZonas from "./AlertasZonas";
-import GraficoIndice from "./GraficoIndice";
-import RecomendacionesPriorizacion from "./RecomendacionesPriorizacion";
 import IncentivosBanner from "./IncentivosBanner";
 import GuiaSeparacion from "./GuiaSeparacion";
 import PuntosAcopio from "./PuntosAcopio";
@@ -11,13 +6,12 @@ import Logros from "./Logros";
 
 /**
  * Antes eran "Módulo B" (cobertura equitativa) y "Módulo C" (reciclaje)
- * en tabs separados. Ahora es una sola sección "Comunidad" con dos
- * bloques internos, uno por tema.
+ * en tabs separados. Por ahora solo se muestra reciclaje; cobertura
+ * queda pendiente de reintegrar (los componentes siguen en la carpeta).
  */
 export default function ComunidadView() {
   return (
     <section className="space-y-10">
-      {/* Bloque 1: reciclaje y segregación */}
       <div className="space-y-4">
         <h2 className="text-[13px] font-semibold text-[#E8920A] uppercase tracking-wide">
           Reciclaje y segregación
