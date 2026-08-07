@@ -17,7 +17,7 @@ interface AuthContextValue {
     session: Session | null;
     usuario: UsuarioPerfil | null;
     loading: boolean;
-    signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+    signIn: (email: string, password: string) => Promise<{ error: string | null; usuario?: UsuarioPerfil | null }>;
     signUp: (
         nombre: string,
         email: string,
@@ -34,14 +34,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [usuario, setUsuario] = useState<UsuarioPerfil | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const cargarPerfil = async (userId: string) => {
+    const cargarPerfil = async (userId: string): Promise<UsuarioPerfil | null> => {
         try {
             const perfil = await apiFetch<UsuarioPerfil>(`/api/usuarios/${userId}`);
             setUsuario(perfil);
+            return perfil;
         } catch {
             // El auth.user existe en Supabase pero aún no tiene fila en tu tabla usuarios
             // (ej. registro interrumpido). Se deja usuario en null.
             setUsuario(null);
+            return null;
         }
     };
 
@@ -65,8 +67,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const signIn: AuthContextValue["signIn"] = async (email, password) => {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        return { error: error?.message ?? null };
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) return { error: error.message };
+        const perfil = data.user ? await cargarPerfil(data.user.id) : null;
+        return { error: null, usuario: perfil };
     };
 
     const signUp: AuthContextValue["signUp"] = async (nombre, email, password, coloniaId) => {

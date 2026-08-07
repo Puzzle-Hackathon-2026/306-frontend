@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useColonias } from "../../hooks/useColonias";
+import { navigate } from "../../lib/router";
 
 interface Props {
     open: boolean;
@@ -40,7 +41,7 @@ export default function AccountModal({ open, onClose }: Props) {
             return;
         }
         setCargando(true);
-        const { error } = await signIn(loginEmail, loginPassword);
+        const { error, usuario: perfilLogueado } = await signIn(loginEmail, loginPassword);
         setCargando(false);
         if (error) {
             setErrorMsg(error);
@@ -49,6 +50,11 @@ export default function AccountModal({ open, onClose }: Props) {
         setLoginEmail("");
         setLoginPassword("");
         setScreen("profile");
+
+        if (perfilLogueado?.rol === "empresa") {
+            navigate("/operativo");
+            onClose();
+        }
     };
 
     const manejarRegistro = async () => {
