@@ -40,7 +40,7 @@ export default function ReporteForm({ onClose }: Props) {
     setTimeout(() => {
       setEnviado(false);
       onClose();
-    }, 2000);
+    }, 0);
   };
 
   return (
