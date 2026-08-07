@@ -3,8 +3,6 @@ import { horarios } from "../../data/ciudadana";
 import ColoniaSelector from "./ColoniaSelector";
 import EstadoTiempoReal from "./EstadoTiempoReal";
 import CalendarioSemanal from "./CalendarioSemanal";
-import ReportarProblema from "./ReportarProblema";
-import Notificaciones from "./Notificaciones";
 
 export default function VistaCiudadana() {
   const [colonia, setColonia] = useState("Col. Las Palmas");
@@ -25,13 +23,15 @@ export default function VistaCiudadana() {
         </div>
         <ColoniaSelector value={colonia} onChange={setColonia} />
       </div>
+
       <EstadoTiempoReal colonia={colonia} info={info} />
+
       <div>
-        {/*barra de calendario horizontal, denada marcelo*/}
+        {/* barra de calendario horizontal, decida marcelo */}
         <CalendarioSemanal info={info} />
-        {/*got rid of reports 4 now, cambiara a ser un popup.*/}
+        {/* reportes se quitaron de aquí, van en un popup */}
       </div>
-      {/*got rid of notis 4 now , va a ser un boton cascadaish para las notis*/}
+      {/* notificaciones se quitaron de aquí, van en un botón cascada */}
     </section>
   );
 }
