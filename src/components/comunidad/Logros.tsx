@@ -3,8 +3,8 @@ import { logros } from '../../data/comunidad'
 export default function Logros() {
   return (
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
-      <h2 className="font-display text-[15px] font-700 text-[#111A14] mb-1">Sistema de logros</h2>
-      <p className="text-[11px] text-[#5A6B5E] mb-3">Participa, acumula puntos y gana reconocimientos</p>
+      <h2 className="font-display text-md font-700 text-[#111A14] mb-1">Sistema de logros</h2>
+      <p className="text-xs text-[#5A6B5E] mb-3">Participa, acumula puntos y gana reconocimientos</p>
 
       <div className="grid grid-cols-2 gap-2">
         {logros.map((l) => (
@@ -16,9 +16,9 @@ export default function Logros() {
           >
             <div className="text-2xl flex-shrink-0">{l.icono}</div>
             <div className="flex-1 min-w-0">
-              <div className="text-[11px] font-semibold text-[#111A14] truncate">{l.titulo}</div>
-              <div className="text-[9px] text-[#5A6B5E] leading-tight">{l.descripcion}</div>
-              <div className="text-[9px] font-semibold text-[#16643A] mt-0.5">+{l.puntos} pts</div>
+              <div className="text-xs font-semibold text-[#111A14] truncate">{l.titulo}</div>
+              <div className="text-2xs text-[#5A6B5E] leading-tight">{l.descripcion}</div>
+              <div className="text-2xs font-semibold text-[#16643A] mt-0.5">+{l.puntos} pts</div>
             </div>
           </div>
         ))}

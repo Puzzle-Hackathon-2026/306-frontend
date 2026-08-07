@@ -19,7 +19,7 @@ interface Props {
 export default function CalendarioSemanal({ info }: Props) {
   return (
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
-      <h2 className="font-display text-[15px] font-700 text-[#111A14] mb-4">
+      <h2 className="font-display text-md font-700 text-[#111A14] mb-4">
         Calendario de recolección
       </h2>
 
@@ -40,17 +40,17 @@ export default function CalendarioSemanal({ info }: Props) {
                   : "bg-[#F8F9F8] border-[#E8EDE9] text-[#B0BDB5]"
               }`}
             >
-              <div className="text-[10px] font-semibold tracking-wide">
+              <div className="text-xs font-semibold tracking-wide">
                 {dia}
               </div>
-              <div className="text-[18px] mt-1">{activo ? "🗑️" : "·"}</div>
-              {esHoy && <div className="text-[9px] mt-0.5 font-bold">HOY</div>}
+              <div className="text-lg mt-1">{activo ? "🗑️" : "·"}</div>
+              {esHoy && <div className="text-2xs mt-0.5 font-bold">HOY</div>}
             </div>
           );
         })}
       </div>
 
-      <div className="border-t border-[#D4E0D9] pt-3 text-[12px] text-[#5A6B5E]">
+      <div className="border-t border-[#D4E0D9] pt-3 text-sm text-[#5A6B5E]">
         <span className="font-semibold text-[#111A14]">
           Días de recolección:
         </span>{" "}

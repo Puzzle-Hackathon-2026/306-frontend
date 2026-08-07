@@ -17,13 +17,13 @@ export default function ReportesCiudadanos() {
   return (
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <h2 className="font-display text-[15px] font-700 text-[#111A14]">Reportes ciudadanos</h2>
+        <h2 className="font-display text-md font-700 text-[#111A14]">Reportes ciudadanos</h2>
         <div className="flex gap-1.5">
           {filtros.map((f) => (
             <button
               key={f}
               onClick={() => setFiltro(f)}
-              className={`text-[11px] px-2.5 py-1 rounded-md font-semibold transition-colors capitalize ${
+              className={`text-xs px-2.5 py-1 rounded-md font-semibold transition-colors capitalize ${
                 filtro === f ? 'bg-[#16643A] text-white' : 'bg-[#F0F4F1] text-[#5A6B5E] hover:bg-[#E8F2EC]'
               }`}
             >
@@ -34,11 +34,11 @@ export default function ReportesCiudadanos() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-[#D4E0D9]">
               {['ID', 'Tipo', 'Zona', 'Hora', 'Urgencia', 'Estado'].map((h) => (
-                <th key={h} className="text-left text-[10px] font-semibold tracking-wider text-[#5A6B5E] uppercase py-2 pr-4">{h}</th>
+                <th key={h} className="text-left text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase py-2 pr-4">{h}</th>
               ))}
             </tr>
           </thead>
@@ -56,7 +56,7 @@ export default function ReportesCiudadanos() {
                     <span className="font-semibold capitalize" style={{ color: urgColor }}>{r.urgencia}</span>
                   </td>
                   <td className="py-2.5">
-                    <span className="text-[11px] px-2 py-0.5 rounded font-semibold capitalize" style={{ backgroundColor: cfg.bg, color: cfg.color }}>
+                    <span className="text-xs px-2 py-0.5 rounded font-semibold capitalize" style={{ backgroundColor: cfg.bg, color: cfg.color }}>
                       {r.estado}
                     </span>
                   </td>

@@ -12,7 +12,7 @@ export default function VistaCiudadana() {
     <section className="space-y-6">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <p className="text-[11px] font-semibold tracking-widest text-[#16643A] uppercase mb-1">
+          <p className="text-xs font-semibold tracking-widest text-[#16643A] uppercase mb-1">
             Tu colonia
           </p>
           <h1 className="font-display text-3xl font-800 text-[#111A14] leading-none">

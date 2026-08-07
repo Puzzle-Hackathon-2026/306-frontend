@@ -24,15 +24,15 @@ export default function GraficoIndice() {
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
-          <h2 className="font-display text-[15px] font-700 text-[#111A14]">Índice de cobertura por colonia</h2>
-          <p className="text-[11px] text-[#5A6B5E]">Ordenado por índice de menor a mayor</p>
+          <h2 className="font-display text-md font-700 text-[#111A14]">Índice de cobertura por colonia</h2>
+          <p className="text-xs text-[#5A6B5E]">Ordenado por índice de menor a mayor</p>
         </div>
         <div className="flex gap-1">
           {opciones.map((o) => (
             <button
               key={o.id}
               onClick={() => setOrden(o.id)}
-              className={`text-[10px] px-2 py-1 rounded font-semibold transition-colors ${
+              className={`text-xs px-2 py-1 rounded font-semibold transition-colors ${
                 orden === o.id ? 'bg-[#16643A] text-white' : 'bg-[#F0F4F1] text-[#5A6B5E] hover:bg-[#E8F2EC]'
               }`}
             >

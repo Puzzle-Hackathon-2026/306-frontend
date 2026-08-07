@@ -190,7 +190,7 @@ export default function ModuloB() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <p className="text-[11px] font-semibold tracking-widest text-[#5A6B5E] uppercase mb-1">
+        <p className="text-xs font-semibold tracking-widest text-[#5A6B5E] uppercase mb-1">
           Módulo B · Social
         </p>
         <h1
@@ -199,7 +199,7 @@ export default function ModuloB() {
         >
           Cobertura equitativa
         </h1>
-        <p className="text-[13px] text-[#5A6B5E] mt-1">
+        <p className="text-sm text-[#5A6B5E] mt-1">
           Análisis de brechas por colonia y priorización de zonas desatendidas
         </p>
       </div>
@@ -237,7 +237,7 @@ export default function ModuloB() {
             key={kpi.label}
             className="border border-[#D4E0D9] rounded-xl p-4"
           >
-            <div className="text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase mb-2">
+            <div className="text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase mb-2">
               {kpi.label}
             </div>
             <div
@@ -250,7 +250,7 @@ export default function ModuloB() {
             >
               {kpi.value}
             </div>
-            <div className="text-[11px] text-[#5A6B5E] mt-1.5">{kpi.sub}</div>
+            <div className="text-xs text-[#5A6B5E] mt-1.5">{kpi.sub}</div>
           </div>
         ))}
       </div>
@@ -260,11 +260,11 @@ export default function ModuloB() {
         <div className="border border-[#D4E0D9] rounded-xl p-5">
           <h2
             style={{ fontFamily: "'Outfit', sans-serif" }}
-            className="text-[15px] font-700 text-[#111A14] mb-1"
+            className="text-md font-700 text-[#111A14] mb-1"
           >
             Mapa de brechas
           </h2>
-          <p className="text-[11px] text-[#5A6B5E] mb-4">
+          <p className="text-xs text-[#5A6B5E] mb-4">
             Índice de cobertura por zona — menor es peor
           </p>
           <div className="grid grid-cols-3 gap-1.5">
@@ -279,7 +279,7 @@ export default function ModuloB() {
                     borderColor: getColor(c.indice) + "44",
                   }}
                 >
-                  <div className="text-[9px] font-semibold text-[#5A6B5E] leading-tight mb-1">
+                  <div className="text-2xs font-semibold text-[#5A6B5E] leading-tight mb-1">
                     {c.nombre.replace("Barrio ", "B. ").replace("Col. ", "")}
                   </div>
                   <div
@@ -287,15 +287,15 @@ export default function ModuloB() {
                       fontFamily: "'Outfit', sans-serif",
                       color: getColor(c.indice),
                     }}
-                    className="text-[18px] font-800 leading-none"
+                    className="text-lg font-800 leading-none"
                   >
                     {c.indice}
                   </div>
-                  <div className="text-[8px] text-[#5A6B5E] mt-0.5">/{100}</div>
+                  <div className="text-2xs text-[#5A6B5E] mt-0.5">/{100}</div>
                 </div>
               ))}
           </div>
-          <div className="mt-4 flex items-center justify-between text-[10px] text-[#5A6B5E]">
+          <div className="mt-4 flex items-center justify-between text-xs text-[#5A6B5E]">
             <div className="flex items-center gap-2">
               {[
                 { color: "#16643A", label: "75+" },
@@ -319,11 +319,11 @@ export default function ModuloB() {
         <div className="border border-[#D4E0D9] rounded-xl p-5">
           <h2
             style={{ fontFamily: "'Outfit', sans-serif" }}
-            className="text-[15px] font-700 text-[#111A14] mb-1"
+            className="text-md font-700 text-[#111A14] mb-1"
           >
             Alertas — zonas desatendidas
           </h2>
-          <p className="text-[11px] text-[#5A6B5E] mb-4">
+          <p className="text-xs text-[#5A6B5E] mb-4">
             Colonias con más de {diasUmbral} días sin recolección
           </p>
           <div className="space-y-2">
@@ -339,7 +339,7 @@ export default function ModuloB() {
                   }}
                 >
                   <div
-                    className="w-8 h-8 rounded-md flex items-center justify-center font-800 text-[13px] flex-shrink-0"
+                    className="w-8 h-8 rounded-md flex items-center justify-center font-800 text-sm flex-shrink-0"
                     style={{
                       backgroundColor: getColor(c.indice),
                       color: "#fff",
@@ -349,15 +349,15 @@ export default function ModuloB() {
                     {c.dias}d
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-[12px] font-semibold text-[#111A14] truncate">
+                    <div className="text-sm font-semibold text-[#111A14] truncate">
                       {c.nombre}
                     </div>
-                    <div className="text-[10px] text-[#5A6B5E]">
+                    <div className="text-xs text-[#5A6B5E]">
                       {c.poblacion.toLocaleString("es-HN")} hab · {c.reportes}{" "}
                       reportes activos
                     </div>
                   </div>
-                  <div className="text-[10px] text-right flex-shrink-0">
+                  <div className="text-xs text-right flex-shrink-0">
                     <div
                       style={{ color: getColor(c.indice) }}
                       className="font-bold"
@@ -378,11 +378,11 @@ export default function ModuloB() {
           <div>
             <h2
               style={{ fontFamily: "'Outfit', sans-serif" }}
-              className="text-[15px] font-700 text-[#111A14]"
+              className="text-md font-700 text-[#111A14]"
             >
               Índice de cobertura por colonia
             </h2>
-            <p className="text-[11px] text-[#5A6B5E]">
+            <p className="text-xs text-[#5A6B5E]">
               Ordenado por índice de menor a mayor
             </p>
           </div>
@@ -391,7 +391,7 @@ export default function ModuloB() {
               <button
                 key={o}
                 onClick={() => setOrdenado(o)}
-                className={`text-[10px] px-2 py-1 rounded font-semibold capitalize transition-colors ${
+                className={`text-xs px-2 py-1 rounded font-semibold capitalize transition-colors ${
                   ordenado === o
                     ? "bg-[#16643A] text-white"
                     : "bg-[#F0F4F1] text-[#5A6B5E] hover:bg-[#E8F2EC]"
@@ -447,11 +447,11 @@ export default function ModuloB() {
       <div className="border border-[#D4E0D9] rounded-xl p-5">
         <h2
           style={{ fontFamily: "'Outfit', sans-serif" }}
-          className="text-[15px] font-700 text-[#111A14] mb-1"
+          className="text-md font-700 text-[#111A14] mb-1"
         >
           Recomendación de priorización
         </h2>
-        <p className="text-[11px] text-[#5A6B5E] mb-4">
+        <p className="text-xs text-[#5A6B5E] mb-4">
           Colonias sugeridas para próximo despacho · criterio: tiempo sin
           servicio (60%) + incidencia de reportes (40%)
         </p>
@@ -462,7 +462,7 @@ export default function ModuloB() {
               className="flex items-center gap-4 border border-[#D4E0D9] rounded-lg px-4 py-3 hover:bg-[#F8F9F8]"
             >
               <div
-                className="w-7 h-7 rounded flex items-center justify-center font-800 text-[13px] flex-shrink-0"
+                className="w-7 h-7 rounded flex items-center justify-center font-800 text-sm flex-shrink-0"
                 style={{
                   backgroundColor:
                     i === 0 ? "#DC2626" : i === 1 ? "#E8920A" : "#5A6B5E",
@@ -473,22 +473,22 @@ export default function ModuloB() {
                 {i + 1}
               </div>
               <div className="flex-1">
-                <div className="text-[13px] font-semibold text-[#111A14]">
+                <div className="text-sm font-semibold text-[#111A14]">
                   {c.nombre}
                 </div>
-                <div className="text-[11px] text-[#5A6B5E]">
+                <div className="text-xs text-[#5A6B5E]">
                   {c.dias} días sin recolección · {c.reportes} reportes ·{" "}
                   {c.poblacion.toLocaleString("es-HN")} habitantes
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
                 <div
-                  className="text-[11px] font-semibold"
+                  className="text-xs font-semibold"
                   style={{ color: getColor(c.indice) }}
                 >
                   Índice {c.indice}
                 </div>
-                <div className="text-[10px] text-[#5A6B5E]">Atender hoy</div>
+                <div className="text-xs text-[#5A6B5E]">Atender hoy</div>
               </div>
             </div>
           ))}

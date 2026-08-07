@@ -13,7 +13,7 @@ export default function ComunidadView() {
   return (
     <section className="space-y-10">
       <div className="space-y-4">
-        <h2 className="text-[13px] font-semibold text-[#E8920A] uppercase tracking-wide">
+        <h2 className="text-sm font-semibold text-[#E8920A] uppercase tracking-wide">
           Reciclaje y segregación
         </h2>
         <IncentivosBanner />
