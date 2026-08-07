@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { horarios } from "../../data/ciudadana";
 import { useColonias } from "../../hooks/useColonias";
 import ColoniaSelector from "./ColoniaSelector";
 import EstadoTiempoReal from "./EstadoTiempoReal";
@@ -17,18 +16,6 @@ export default function VistaCiudadana() {
     }, [colonias, coloniaId]);
 
     const coloniaSeleccionada = colonias.find((c) => c.id === coloniaId);
-
-    // TODO: EstadoTiempoReal (hora/estado en vivo) todavía usa data de ejemplo
-    // por nombre — vendrá de un endpoint de posiciones de camión aparte.
-    // Si el nombre real no coincide con el mock, cae a un valor por default
-    // para no romper el componente mientras tanto.
-    const infoMock = coloniaSeleccionada
-        ? horarios[coloniaSeleccionada.nombre] ?? {
-            dias: [],
-            hora: "--:--",
-            estado: "pendiente" as const,
-        }
-        : { dias: [], hora: "--:--", estado: "pendiente" as const };
 
     return (
         <section className="space-y-6">
@@ -50,7 +37,12 @@ export default function VistaCiudadana() {
                     loading={loading}
                 />
             </div>
-            <EstadoTiempoReal colonia={coloniaSeleccionada?.nombre ?? ""} info={infoMock} />
+            <EstadoTiempoReal
+                colonia={coloniaSeleccionada?.nombre ?? ""}
+                diasRecoleccionIso={coloniaSeleccionada?.diasRecoleccionIso ?? []}
+                horaInicioRecoleccion={coloniaSeleccionada?.horaInicioRecoleccion ?? null}
+                horaFinRecoleccion={coloniaSeleccionada?.horaFinRecoleccion ?? null}
+            />
             <div>
                 <CalendarioSemanal
                     diaRecoleccion={coloniaSeleccionada?.diaRecoleccion ?? "Sin datos"}
