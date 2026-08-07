@@ -1,8 +1,7 @@
 import { useRoute } from "./lib/router";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import VistaCiudadana from "./components/citizen/VistaCiudadana";
-import ComunidadView from "./components/comunidad/ComunidadView";
 import PanelOperativo from "./components/admin/PanelOperativo";
 import PanelUsuario from "./components/citizen/PanelUsuario";
 
@@ -15,24 +14,20 @@ import PanelUsuario from "./components/citizen/PanelUsuario";
  * página continua, y "/operativo" no se enlaza desde la UI todavía.
  */
 export default function App() {
-  const path = useRoute();
-  const esOperativo = path.startsWith("/operativo");
+    const path = useRoute();
+    const esOperativo = path.startsWith("/operativo");
 
-  return (
-    <div className="min-h-screen bg-white font-sans">
-      <Header />
+    return (
+        <AuthProvider>
+            <div className="min-h-screen bg-white font-sans">
+                <Header />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-14">
-        {esOperativo ? (
-          <PanelOperativo />
-        ) : (
-          <>
-            <PanelUsuario />
-          </>
-        )}
-      </main>
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-14">
+                    {esOperativo ? <PanelOperativo /> : <PanelUsuario />}
+                </main>
 
-      <Footer />
-    </div>
-  );
+                <Footer />
+            </div>
+        </AuthProvider>
+    );
 }
