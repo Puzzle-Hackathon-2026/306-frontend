@@ -1,18 +1,27 @@
+import { useState } from "react";
 import VistaCiudadana from "./VistaCiudadana";
 import ComunidadView from "../comunidad/ComunidadView";
 import BotonReportar from "./BotonReportar";
+import ReporteForm from "./ReporteForm";
+import Modal from "../ui/Modal";
 
-/**
- * Vista pública combinada (ruta "/"): ciudadano + comunidad, más el
- * botón flotante de reporte. App.tsx solo decide entre esto y el
- * panel operativo (admin).
- */
 export default function PanelUsuario() {
+  const [formAbierto, setFormAbierto] = useState(false);
+
   return (
     <>
       <VistaCiudadana />
       <ComunidadView />
-      <BotonReportar />
+
+      <BotonReportar onClick={() => setFormAbierto(true)} />
+
+      <Modal
+        abierto={formAbierto}
+        onClose={() => setFormAbierto(false)}
+        titulo="Reportar un problema"
+      >
+        <ReporteForm onClose={() => setFormAbierto(false)} />
+      </Modal>
     </>
   );
 }
