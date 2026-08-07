@@ -42,7 +42,7 @@ export default function PuntosAcopio() {
         </p>
       )}
 
-      <div className="space-y-2.5">
+      <div className="space-y-2.5 overflow-y-auto max-h-[420px] pr-1">
         {puntosFiltrados.map((p) => (
           <div
             key={p.id}
