@@ -6,6 +6,7 @@ import MapaCobertura from "./MapaCobertura";
 import EstadoFlota from "./EstadoFlota";
 import ReportesCiudadanos from "./ReportesCiudadanos";
 import RegistroRutas from "./RegistroRutas";
+
 import GraficoIndice from "../comunidad/GraficoIndice";
 import RecomendacionesPriorizacion from "../comunidad/RecomendacionesPriorizacion";
 import AlertasZonas from "../comunidad/AlertasZonas";
@@ -35,16 +36,19 @@ export default function PanelOperativo() {
     minute: "2-digit",
   });
 
-  const capitalizar = (texto) => texto.charAt(0).toUpperCase() + texto.slice(1);
+  const capitalizar = (texto: string) =>
+    texto.charAt(0).toUpperCase() + texto.slice(1);
 
   return (
     <section className="space-y-6">
+      {/* ENCABEZADO */}
+
       <div>
-        <p className="text-[11px] font-semibold tracking-widest text-[#5A6B5E] uppercase mb-1">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#16643A]">
           Panel interno · Operativo
         </p>
 
-        <h1 className="font-display text-3xl font-extrabold text-[#111A14] leading-none">
+        <h1 className="font-display text-3xl font-extrabold text-[#111A14]">
           Panel de operaciones
         </h1>
 
@@ -53,18 +57,33 @@ export default function PanelOperativo() {
         </p>
       </div>
 
-      <MapaAdmin />
+      {/* KPIs */}
 
       <KpisOperativo />
 
+      <MapaAdmin />
+
+      {/* Cobertura + Flota */}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <MapaCobertura />
+
         <EstadoFlota />
       </div>
 
+      {/* Índice */}
+
       <GraficoIndice />
+
+      {/* Reportes */}
+
       <ReportesCiudadanos />
+
+      {/* Rutas */}
+
       <RegistroRutas />
+
+      {/* Cobertura Equitativa */}
 
       <div className="space-y-4">
         <h2 className="text-[13px] font-semibold text-[#16643A] uppercase tracking-wide">
@@ -75,11 +94,14 @@ export default function PanelOperativo() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <MapaBrechas />
+
           <AlertasZonas />
         </div>
 
         <RecomendacionesPriorizacion />
       </div>
+
+      {/* MAPA GENERAL (ÚLTIMO) */}
     </section>
   );
 }
