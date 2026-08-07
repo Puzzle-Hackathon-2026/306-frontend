@@ -1,62 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-
-interface Notification {
-  id: number;
-  title: string;
-  message: string;
-  time: string;
-}
+import { useAnuncios } from "../../hooks/useAnuncios";
+import { formatRelativeTime } from "../../lib/formatRelativeTime";
 
 export default function NotificationDropdown() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const notifications: Notification[] = [
-    {
-      id: 1,
-      title: "Nuevo reporte",
-      message: "Se reportó basura en Barrio Río de Piedras.",
-      time: "Hace 5 min",
-    },
-    {
-      id: 2,
-      title: "Reporte resuelto",
-      message: "El reporte #142 fue resuelto.",
-      time: "Hace 20 min",
-    },
-    {
-      id: 3,
-      title: "Nuevo comentario",
-      message: "Un ciudadano comentó un reporte.",
-      time: "Hace 1 hora",
-    },
-    {
-      id: 4,
-      title: "Reporte asignado",
-      message: "Un reporte fue asignado a una cuadrilla.",
-      time: "Hace 2 horas",
-    },
-    {
-      id: 5,
-      title: "Basura recolectada",
-      message: "El reporte #125 fue completado.",
-      time: "Ayer",
-    },
-    {
-      id: 6,
-      title: "Nuevo usuario",
-      message: "Se registró un nuevo ciudadano.",
-      time: "Ayer",
-    },
-    {
-      id: 7,
-      title: "Actualización",
-      message: "El sistema fue actualizado correctamente.",
-      time: "Hace 2 días",
-    },
-  ];
+  const { anuncios, loading, error } = useAnuncios();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -69,7 +20,6 @@ export default function NotificationDropdown() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
@@ -95,10 +45,12 @@ export default function NotificationDropdown() {
           />
         </svg>
 
-        {/* Contador */}
-        <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
-          {notifications.length}
-        </span>
+        {/* Contador — real, no fijo en 7 */}
+        {anuncios.length > 0 && (
+          <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+            {anuncios.length}
+          </span>
+        )}
       </button>
 
       {/* Dropdown */}
@@ -106,24 +58,32 @@ export default function NotificationDropdown() {
         <div className="absolute right-0 mt-3 w-80 rounded-xl border border-gray-200 bg-white shadow-xl z-50 overflow-hidden">
           {/* Encabezado */}
           <div className="sticky top-0 bg-white border-b px-4 py-3">
-            <h3 className="font-semibold text-[#2E5E4E]">Notificaciones</h3>
+            <h3 className="font-semibold text-[#2E5E4E]">Anuncios</h3>
           </div>
 
           {/* Lista con scroll */}
           <div className="max-h-96 overflow-y-auto">
-            {notifications.map((notification) => (
+            {loading && (
+              <p className="px-4 py-3 text-xs text-[#5A6B5E]">Cargando...</p>
+            )}
+            {error && (
+              <p className="px-4 py-3 text-xs text-red-600">Error: {error}</p>
+            )}
+            {!loading && !error && anuncios.length === 0 && (
+              <p className="px-4 py-3 text-xs text-[#5A6B5E]">
+                Sin anuncios por ahora.
+              </p>
+            )}
+
+            {anuncios.map((a) => (
               <div
-                key={notification.id}
+                key={a.id}
                 className="border-b px-4 py-3 hover:bg-gray-50 cursor-pointer transition"
               >
-                <p className="font-medium text-gray-800">
-                  {notification.title}
-                </p>
-
-                <p className="text-sm text-gray-600">{notification.message}</p>
-
+                <p className="font-medium text-gray-800">{a.titulo}</p>
+                <p className="text-sm text-gray-600">{a.descripcion}</p>
                 <span className="text-xs text-gray-400">
-                  {notification.time}
+                  {formatRelativeTime(a.createdAt)}
                 </span>
               </div>
             ))}
