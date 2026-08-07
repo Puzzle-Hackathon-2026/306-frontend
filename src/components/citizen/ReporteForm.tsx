@@ -38,13 +38,17 @@ interface Props {
 function obtenerUbicacion(): Promise<{ lat: number; lng: number }> {
     return new Promise((resolve) => {
         if (!navigator.geolocation) {
+            console.warn("Geolocalización no soportada por este navegador, usando respaldo.");
             resolve(COORD_RESPALDO);
             return;
         }
         navigator.geolocation.getCurrentPosition(
             (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-            () => resolve(COORD_RESPALDO),
-            { timeout: 4000 }
+            (err) => {
+                console.warn(`Geolocalización falló (código ${err.code}): ${err.message}. Usando respaldo.`);
+                resolve(COORD_RESPALDO);
+            },
+            { timeout: 8000, enableHighAccuracy: false }
         );
     });
 }
@@ -65,7 +69,10 @@ export default function ReporteForm({ onClose }: Props) {
         setError(null);
 
         try {
-            const { lat, lng } = await obtenerUbicacion();
+            const coloniaSeleccionada = colonias.find((c) => c.id === coloniaId);
+            const { lat, lng } = coloniaSeleccionada
+                ? { lat: coloniaSeleccionada.lat, lng: coloniaSeleccionada.lng }
+                : await obtenerUbicacion();
 
             const payload = {
                 categoria,
@@ -193,7 +200,8 @@ export default function ReporteForm({ onClose }: Props) {
             </div>
 
             <p className="text-[10px] text-[#5A6B5E]">
-                📍 Se usará tu ubicación actual si das permiso al navegador.
+                📍 Se usará la ubicación de la colonia seleccionada. Si no eliges ninguna, se
+                intentará usar tu ubicación actual.
             </p>
 
             {error && <p className="text-[11px] text-red-600">{error}</p>}
