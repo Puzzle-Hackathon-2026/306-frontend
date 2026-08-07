@@ -49,14 +49,12 @@ export default function AccountModal({ open, onClose }: Props) {
         }
         setLoginEmail("");
         setLoginPassword("");
+        setScreen("profile");
 
         if (perfilLogueado?.rol === "empresa") {
             navigate("/operativo");
             onClose();
-            return;
         }
-
-        setScreen("profile");
     };
 
     const manejarRegistro = async () => {
