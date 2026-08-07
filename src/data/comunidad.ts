@@ -312,53 +312,167 @@ export interface Logro {
 export const logros: Logro[] = [
   {
     id: 1,
-    titulo: "Primer reporte",
-    descripcion: "Enviaste tu primer reporte ciudadano",
-    puntos: 10,
-    desbloqueado: true,
-    icono: "📣",
-  },
-  {
-    id: 2,
-    titulo: "Vecino activo",
-    descripcion: "5 reportes enviados este mes",
-    puntos: 30,
-    desbloqueado: true,
-    icono: "🏘️",
-  },
-  {
-    id: 3,
-    titulo: "Reciclador novato",
-    descripcion: "Visitaste un punto de acopio",
+    titulo: "Primer reciclaje",
+    descripcion: "Registraste tu primer reciclaje.",
     puntos: 20,
     desbloqueado: true,
     icono: "♻️",
   },
   {
+    id: 2,
+    titulo: "Primer punto de acopio",
+    descripcion: "Visitaste tu primer centro de reciclaje.",
+    puntos: 20,
+    desbloqueado: true,
+    icono: "📍",
+  },
+  {
+    id: 3,
+    titulo: "Vecino activo",
+    descripcion: "Has enviado 5 reportes ciudadanos.",
+    puntos: 30,
+    desbloqueado: true,
+    icono: "🏘️",
+  },
+  {
     id: 4,
-    titulo: "Guardián verde",
-    descripcion: "10 reportes de punto ilegal resueltos",
+    titulo: "Guardián Verde",
+    descripcion: "Visitaste 10 puntos de reciclaje.",
     puntos: 80,
     desbloqueado: false,
     icono: "🌿",
   },
   {
     id: 5,
-    titulo: "Líder de colonia",
-    descripcion: "Top 3 en reportes de tu zona",
-    puntos: 150,
+    titulo: "Embajador Ambiental",
+    descripcion: "Reciclaste durante 30 días consecutivos.",
+    puntos: 200,
     desbloqueado: false,
-    icono: "🏆",
+    icono: "🌳",
   },
   {
     id: 6,
-    titulo: "Campeón ambiental",
-    descripcion: "50 visitas a puntos de acopio",
+    titulo: "Campeón Ambiental",
+    descripcion: "Visitaste 50 puntos de acopio.",
     puntos: 300,
     desbloqueado: false,
-    icono: "🌍",
+    icono: "🌎",
   },
 ];
 
+// -------------------------
+// Sistema de niveles
+// -------------------------
+
+export interface NivelReciclador {
+  nombre: string;
+  minimo: number;
+  meta: number;
+  siguiente: string | null;
+}
+
+export const niveles: NivelReciclador[] = [
+  {
+    nombre: "Reciclador Novato",
+    minimo: 0,
+    meta: 100,
+    siguiente: "Separador Responsable",
+  },
+  {
+    nombre: "Separador Responsable",
+    minimo: 100,
+    meta: 250,
+    siguiente: "Guardián Verde",
+  },
+  {
+    nombre: "Guardián Verde",
+    minimo: 250,
+    meta: 500,
+    siguiente: "Embajador Ambiental",
+  },
+  {
+    nombre: "Embajador Ambiental",
+    minimo: 500,
+    meta: 1000,
+    siguiente: "Campeón Ambiental",
+  },
+  {
+    nombre: "Campeón Ambiental",
+    minimo: 1000,
+    meta: 1000,
+    siguiente: null,
+  },
+];
+
+export function obtenerNivel(puntos: number) {
+  return (
+    niveles.find((nivel, index) => {
+      const siguiente = niveles[index + 1];
+
+      if (!siguiente) return puntos >= nivel.minimo;
+
+      return puntos >= nivel.minimo && puntos < siguiente.minimo;
+    }) ?? niveles[0]
+  );
+}
+
+export const ECO_PUNTOS = {
+  RECICLAJE: 20,
+
+  REPORTE_CREADO: 10,
+
+  REPORTE_RESUELTO: 20,
+
+  PRIMER_RECICLAJE: 20,
+
+  PRIMERA_VISITA: 20,
+
+  RACHA_3_DIAS: 30,
+
+  RACHA_7_DIAS: 70,
+
+  RACHA_30_DIAS: 250,
+
+  VISITAS_10: 80,
+
+  VISITAS_50: 300,
+};
+
+export function obtenerAccionesPuntos() {
+  return [
+    {
+      titulo: "Registrar reciclaje",
+      puntos: ECO_PUNTOS.RECICLAJE,
+    },
+    {
+      titulo: "Crear un reporte ciudadano",
+      puntos: ECO_PUNTOS.REPORTE_CREADO,
+    },
+    {
+      titulo: "Reporte resuelto",
+      puntos: ECO_PUNTOS.REPORTE_RESUELTO,
+    },
+    {
+      titulo: "Primer reciclaje",
+      puntos: ECO_PUNTOS.PRIMER_RECICLAJE,
+    },
+    {
+      titulo: "Primera visita a un punto de acopio",
+      puntos: ECO_PUNTOS.PRIMERA_VISITA,
+    },
+    {
+      titulo: "Racha de 3 días reciclando",
+      puntos: ECO_PUNTOS.RACHA_3_DIAS,
+    },
+    {
+      titulo: "10 visitas a puntos de reciclaje",
+      puntos: ECO_PUNTOS.VISITAS_10,
+    },
+    {
+      titulo: "50 visitas a puntos de reciclaje",
+      puntos: ECO_PUNTOS.VISITAS_50,
+    },
+  ];
+}
+
 export const PUNTOS_USUARIO = 60;
-export const PROXIMO_LOGRO_META = 80;
