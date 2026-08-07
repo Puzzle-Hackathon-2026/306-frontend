@@ -54,7 +54,8 @@ export default function VistaCiudadana() {
           />
           <CalendarioSemanal
             diaRecoleccion={coloniaSeleccionada.diaRecoleccion}
-            diasRecoleccionIso={coloniaSeleccionada.diasRecoleccionIso}
+                      diasRecoleccionIso={coloniaSeleccionada.diasRecoleccionIso}
+                      horaInicioRecoleccion={coloniaSeleccionada?.horaInicioRecoleccion ?? null}
           />
         </div>
       )}
