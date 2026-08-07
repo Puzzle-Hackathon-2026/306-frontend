@@ -15,6 +15,9 @@ interface Props {
  * Mapa base limitado a San Pedro Sula. maxBoundsViscosity=1 impide
  * arrastrar el mapa fuera de los límites de la ciudad; minZoom evita
  * alejarse hasta ver el resto del país.
+ *
+ * Altura aumentada (antes 420px fijos) para que el mapa deje de verse
+ * como una tira horizontal dentro del contenedor ancho del panel.
  */
 export default function SanPedroMap({ children }: Props) {
   return (
@@ -25,7 +28,7 @@ export default function SanPedroMap({ children }: Props) {
       maxBounds={SPS_BOUNDS}
       maxBoundsViscosity={1.0}
       scrollWheelZoom
-      className="w-full h-[420px] rounded-lg z-0"
+      className="w-full h-[520px] lg:h-[620px] rounded-lg z-0"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

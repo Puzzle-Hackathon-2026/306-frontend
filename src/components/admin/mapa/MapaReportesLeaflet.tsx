@@ -35,7 +35,7 @@ export default function MapaReportesLeaflet() {
 
     if (loading) {
         return (
-            <div className="w-full h-[420px] rounded-lg bg-[#F0F4F1] animate-pulse flex items-center justify-center text-[#5A6B5E] text-[13px]">
+            <div className="w-full h-[520px] lg:h-[620px] rounded-lg bg-[#F0F4F1] animate-pulse flex items-center justify-center text-[#5A6B5E] text-[13px]">
                 Cargando mapa de reportes...
             </div>
         );
@@ -43,7 +43,7 @@ export default function MapaReportesLeaflet() {
 
     if (error) {
         return (
-            <div className="w-full h-[420px] rounded-lg bg-[#FEF2F2] flex items-center justify-center text-[#DC2626] text-[13px]">
+            <div className="w-full h-[520px] lg:h-[620px] rounded-lg bg-[#FEF2F2] flex items-center justify-center text-[#DC2626] text-[13px]">
                 No se pudo cargar el mapa de reportes.
             </div>
         );

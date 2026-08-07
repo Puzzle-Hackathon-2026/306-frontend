@@ -18,11 +18,11 @@ const leyenda: { color: string; label: string }[] = [
     { color: '#F0F4F1', label: 'No programada' },
 ]
 
-// Con 276 colonias reales, mostramos solo las más relevantes para la demo:
-// primero las que tienen actividad hoy (cubiertas/en progreso), luego las más críticas.
+// Con 276 colonias reales, mostramos solo las mÃ¡s relevantes para la demo:
+// primero las que tienen actividad hoy (cubiertas/en progreso), luego las mÃ¡s crÃ­ticas.
 const MAX_COLONIAS_MOSTRADAS = 24
 
-// JS getDay(): 0=Domingo...6=Sábado. Nuestro sistema usa 1=Lunes...7=Domingo.
+// JS getDay(): 0=Domingo...6=SÃ¡bado. Nuestro sistema usa 1=Lunes...7=Domingo.
 function isoDeHoy(): number {
     const dia = new Date().getDay()
     return dia === 0 ? 7 : dia
@@ -67,7 +67,7 @@ export default function MapaCobertura() {
         indice: c.indice,
     }))
 
-    // Prioriza mostrar lo que tiene actividad hoy, luego lo más crítico
+    // Prioriza mostrar lo que tiene actividad hoy, luego lo mÃ¡s crÃ­tico
     const zonasOrdenadas = [...zonasConEstado].sort((a, b) => {
         const prioridad = (e: EstadoMapa) => (e === 'cubierta' || e === 'en progreso' ? 0 : 1)
         const diffPrioridad = prioridad(a.estado) - prioridad(b.estado)
