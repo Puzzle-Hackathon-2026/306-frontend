@@ -1,7 +1,7 @@
 import { diasSemana } from "../../data/ciudadana";
 
 // A qué número ISO (Lun=1 ... Sáb=6) corresponde cada columna que mostramos.
-// Domingo (7 / getDay()===0) no se muestra en el calendario semanal actual.
+// Domingo (7) no se muestra en el calendario semanal actual.
 const ISO_POR_COLUMNA: Record<string, number> = {
     Lun: 1,
     Mar: 2,
@@ -11,21 +11,8 @@ const ISO_POR_COLUMNA: Record<string, number> = {
     Sáb: 6,
 };
 
-// Date.getDay() en JS regresa 0=Domingo, 1=Lunes, ..., 6=Sábado.
-// Lo convertimos a la abreviación de columna que usamos en el calendario.
-const COLUMNA_POR_GETDAY: Record<number, string> = {
-    0: "", // domingo: no hay columna que resaltar
-    1: "Lun",
-    2: "Mar",
-    3: "Mié",
-    4: "Jue",
-    5: "Vie",
-    6: "Sáb",
-};
-
-function obtenerColumnaDeHoy(): string {
-    return COLUMNA_POR_GETDAY[new Date().getDay()] ?? "";
-}
+// TODO: calcular el día de "hoy" dinámicamente en vez de fijarlo.
+const HOY = "Mar";
 
 interface Props {
     diaRecoleccion: string;
@@ -33,8 +20,6 @@ interface Props {
 }
 
 export default function CalendarioSemanal({ diaRecoleccion, diasRecoleccionIso }: Props) {
-    const hoy = obtenerColumnaDeHoy();
-
     return (
         <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
             <h2 className="font-display text-[15px] font-700 text-[#111A14] mb-4">
@@ -44,7 +29,7 @@ export default function CalendarioSemanal({ diaRecoleccion, diasRecoleccionIso }
                 {diasSemana.map((dia) => {
                     const iso = ISO_POR_COLUMNA[dia];
                     const activo = diasRecoleccionIso.includes(iso);
-                    const esHoy = dia === hoy;
+                    const esHoy = dia === HOY;
                     return (
                         <div
                             key={dia}
