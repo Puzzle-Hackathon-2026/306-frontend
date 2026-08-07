@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 /**
  * Router mínimo basado en window.history, sin dependencias externas.
@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react'
  * react-router-dom ("pnpm add react-router-dom").
  */
 export function useRoute() {
-  const [path, setPath] = useState(window.location.pathname)
+  const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    const onPopState = () => setPath(window.location.pathname)
-    window.addEventListener('popstate', onPopState)
-    return () => window.removeEventListener('popstate', onPopState)
-  }, [])
+    const onPopState = () => setPath(window.location.pathname);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
-  return path
+  return path;
 }
 
 export function navigate(path: string) {
-  window.history.pushState({}, '', path)
-  window.dispatchEvent(new PopStateEvent('popstate'))
+  window.history.pushState({}, "", path);
+  window.dispatchEvent(new PopStateEvent("popstate"));
 }
