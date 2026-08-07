@@ -84,7 +84,7 @@ export default function Login({
           </div>
           <span
             style={{ fontFamily: "'Outfit', sans-serif" }}
-            className="font-700 text-[#111A14] text-[15px] tracking-tight"
+            className="font-700 text-[#111A14] text-md tracking-tight"
           >
             CleanCity <span className="text-[#16643A]">SPS</span>
           </span>
@@ -92,7 +92,7 @@ export default function Login({
 
         {/* Formulario */}
         <div className="w-full max-w-[380px] mx-auto lg:mx-0 my-auto py-10">
-          <p className="text-[11px] font-semibold tracking-widest text-[#5A6B5E] uppercase mb-1.5">
+          <p className="text-xs font-semibold tracking-widest text-[#5A6B5E] uppercase mb-1.5">
             Bienvenido de nuevo
           </p>
           <h1
@@ -101,7 +101,7 @@ export default function Login({
           >
             Inicia sesión
           </h1>
-          <p className="text-[13px] text-[#5A6B5E] mb-6">
+          <p className="text-sm text-[#5A6B5E] mb-6">
             Consulta tu ruta de recolección, envía reportes y da seguimiento en
             tiempo real.
           </p>
@@ -116,13 +116,13 @@ export default function Login({
                 key={op.id}
                 type="button"
                 onClick={() => setTipo(op.id)}
-                className={`flex items-center gap-2 justify-center rounded-lg border-2 py-2.5 text-[12px] font-semibold transition-all ${
+                className={`flex items-center gap-2 justify-center rounded-lg border-2 py-2.5 text-sm font-semibold transition-all ${
                   tipo === op.id
                     ? "border-[#16643A] bg-[#E8F2EC] text-[#16643A]"
                     : "border-[#D4E0D9] text-[#5A6B5E] hover:border-[#B8D9C5]"
                 }`}
               >
-                <span className="text-[15px]">{op.icono}</span>
+                <span className="text-md">{op.icono}</span>
                 {op.label}
               </button>
             ))}
@@ -130,7 +130,7 @@ export default function Login({
 
           <form onSubmit={enviar} className="space-y-3.5">
             <div>
-              <label className="block text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
+              <label className="block text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase mb-1.5">
                 Correo electrónico
               </label>
               <input
@@ -138,18 +138,18 @@ export default function Login({
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
                 placeholder="tunombre@correo.com"
-                className="w-full border border-[#D4E0D9] rounded-md px-3 py-2.5 text-[13px] text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] placeholder:text-[#B0BDB5]"
+                className="w-full border border-[#D4E0D9] rounded-md px-3 py-2.5 text-sm text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] placeholder:text-[#B0BDB5]"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-[11px] font-semibold tracking-wider text-[#5A6B5E] uppercase">
+                <label className="text-xs font-semibold tracking-wider text-[#5A6B5E] uppercase">
                   Contraseña
                 </label>
                 <button
                   type="button"
-                  className="text-[11px] text-[#16643A] font-semibold hover:underline"
+                  className="text-xs text-[#16643A] font-semibold hover:underline"
                 >
                   ¿Olvidaste tu contraseña?
                 </button>
@@ -160,12 +160,12 @@ export default function Login({
                   value={clave}
                   onChange={(e) => setClave(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full border border-[#D4E0D9] rounded-md px-3 py-2.5 pr-10 text-[13px] text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] placeholder:text-[#B0BDB5]"
+                  className="w-full border border-[#D4E0D9] rounded-md px-3 py-2.5 pr-10 text-sm text-[#111A14] bg-white focus:outline-none focus:ring-2 focus:ring-[#16643A] placeholder:text-[#B0BDB5]"
                 />
                 <button
                   type="button"
                   onClick={() => setVerClave(!verClave)}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[11px] text-[#5A6B5E] hover:text-[#111A14] font-medium"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#5A6B5E] hover:text-[#111A14] font-medium"
                 >
                   {verClave ? "Ocultar" : "Ver"}
                 </button>
@@ -173,12 +173,12 @@ export default function Login({
             </div>
 
             {error && (
-              <div className="text-[12px] text-[#DC2626] bg-[#FEF2F2] border border-[#FCA5A5] rounded-md px-3 py-2">
+              <div className="text-sm text-[#DC2626] bg-[#FEF2F2] border border-[#FCA5A5] rounded-md px-3 py-2">
                 {error}
               </div>
             )}
 
-            <label className="flex items-center gap-2 text-[12px] text-[#5A6B5E] pt-1">
+            <label className="flex items-center gap-2 text-sm text-[#5A6B5E] pt-1">
               <input
                 type="checkbox"
                 checked={recordarme}
@@ -191,7 +191,7 @@ export default function Login({
             <button
               type="submit"
               disabled={cargando}
-              className="w-full bg-[#16643A] text-white py-2.5 rounded-md text-[13px] font-semibold hover:bg-[#1A7A46] transition-colors disabled:opacity-60 flex items-center justify-center gap-2 mt-1"
+              className="w-full bg-[#16643A] text-white py-2.5 rounded-md text-sm font-semibold hover:bg-[#1A7A46] transition-colors disabled:opacity-60 flex items-center justify-center gap-2 mt-1"
             >
               {cargando ? (
                 <>
@@ -204,7 +204,7 @@ export default function Login({
             </button>
           </form>
 
-          <p className="text-[12px] text-[#5A6B5E] text-center mt-6">
+          <p className="text-sm text-[#5A6B5E] text-center mt-6">
             ¿Aún no tienes cuenta?{" "}
             <button
               onClick={onIrARegistro}
@@ -216,7 +216,7 @@ export default function Login({
         </div>
 
         <div
-          className="text-[11px] text-[#5A6B5E]"
+          className="text-xs text-[#5A6B5E]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           CleanCity SPS · San Pedro Sula, Honduras · Hackathon 2026
@@ -286,7 +286,7 @@ export default function Login({
         </svg>
 
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <div className="flex items-center gap-1.5 text-[11px] text-[#B8D9C5]">
+          <div className="flex items-center gap-1.5 text-xs text-[#B8D9C5]">
             <span className="w-1.5 h-1.5 bg-[#E8920A] rounded-full animate-pulse" />
             <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               3 CAMIONES EN RUTA · SPS
@@ -302,7 +302,7 @@ export default function Login({
               <br />
               más limpia cada día.
             </h2>
-            <p className="text-[13px] text-[#B8D9C5] leading-relaxed">
+            <p className="text-sm text-[#B8D9C5] leading-relaxed">
               Sigue la recolección en tu colonia, reporta incidencias y ayuda a
               cerrar las brechas de cobertura en San Pedro Sula.
             </p>
@@ -321,7 +321,7 @@ export default function Login({
                 >
                   {s.valor}
                 </div>
-                <div className="text-[10px] text-[#8FB39E] mt-1 max-w-[80px] leading-tight">
+                <div className="text-xs text-[#8FB39E] mt-1 max-w-[80px] leading-tight">
                   {s.label}
                 </div>
               </div>

@@ -45,7 +45,7 @@ export default function Modal({ abierto, onClose, children, titulo }: Props) {
       >
         <div className="flex items-center justify-between px-5 pt-5 pb-3 sticky top-0 bg-white">
           {titulo && (
-            <h2 className="font-display text-[15px] font-700 text-[#111A14]">
+            <h2 className="font-display text-md font-700 text-[#111A14]">
               {titulo}
             </h2>
           )}

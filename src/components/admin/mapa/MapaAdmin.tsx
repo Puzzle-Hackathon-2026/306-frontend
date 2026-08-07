@@ -20,10 +20,10 @@ export default function MapaAdmin() {
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
-          <h2 className="font-display text-[15px] font-700 text-[#111A14]">
+          <h2 className="font-display text-md font-700 text-[#111A14]">
             Mapa de la ciudad
           </h2>
-          <p className="text-[11px] text-[#5A6B5E]">
+          <p className="text-xs text-[#5A6B5E]">
             San Pedro Sula — vista en tiempo real
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function MapaAdmin() {
             <button
               key={o.id}
               onClick={() => setVista(o.id)}
-              className={`text-[11px] px-3 py-1.5 rounded-md font-semibold transition-colors ${
+              className={`text-xs px-3 py-1.5 rounded-md font-semibold transition-colors ${
                 vista === o.id
                   ? "bg-[#16643A] text-white"
                   : "bg-[#F0F4F1] text-[#5A6B5E] hover:bg-[#E8F2EC]"

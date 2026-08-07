@@ -16,10 +16,10 @@ export default function RecomendacionesPriorizacion() {
 
   return (
     <div className="border border-[#D4E0D9] rounded-xl p-5 bg-white">
-      <h2 className="font-display text-[15px] font-700 text-[#111A14] mb-1">
+      <h2 className="font-display text-md font-700 text-[#111A14] mb-1">
         Recomendación de priorización
       </h2>
-      <p className="text-[11px] text-[#5A6B5E] mb-4">
+      <p className="text-xs text-[#5A6B5E] mb-4">
         Colonias sugeridas para próximo despacho · criterio: tiempo sin servicio
         (60%) + incidencia de reportes (40%)
       </p>
@@ -31,7 +31,7 @@ export default function RecomendacionesPriorizacion() {
             className="flex items-center gap-4 border border-[#D4E0D9] rounded-lg px-4 py-3 hover:bg-[#F8F9F8]"
           >
             <div
-              className="w-7 h-7 rounded flex items-center justify-center font-800 text-[13px] flex-shrink-0 font-display"
+              className="w-7 h-7 rounded flex items-center justify-center font-800 text-sm flex-shrink-0 font-display"
               style={{
                 backgroundColor:
                   i === 0 ? "#DC2626" : i === 1 ? "#E8920A" : "#5A6B5E",
@@ -41,22 +41,22 @@ export default function RecomendacionesPriorizacion() {
               {i + 1}
             </div>
             <div className="flex-1">
-              <div className="text-[13px] font-semibold text-[#111A14]">
+              <div className="text-sm font-semibold text-[#111A14]">
                 {c.nombre}
               </div>
-              <div className="text-[11px] text-[#5A6B5E]">
+              <div className="text-xs text-[#5A6B5E]">
                 {c.dias} días sin recolección · {c.reportes} reportes ·{" "}
                 {c.poblacion.toLocaleString("es-HN")} habitantes
               </div>
             </div>
             <div className="text-right flex-shrink-0">
               <div
-                className="text-[11px] font-semibold"
+                className="text-xs font-semibold"
                 style={{ color: getColorByIndice(c.indice) }}
               >
                 Índice {c.indice}
               </div>
-              <div className="text-[10px] text-[#5A6B5E]">Atender hoy</div>
+              <div className="text-xs text-[#5A6B5E]">Atender hoy</div>
             </div>
           </div>
         ))}
