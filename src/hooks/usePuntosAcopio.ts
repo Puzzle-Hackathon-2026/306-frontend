@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "../lib/api";
 
-export interface Colonia {
+export interface PuntoAcopio {
   id: string;
   nombre: string;
-  diaRecoleccion: string;
-  diasRecoleccionIso: number[];
+  descripcion: string;
   lat: number;
   lng: number;
+  materialesAceptados: string[];
+  direccion: string;
+  horario: string;
+  coloniaId: string | null;
+  activo: boolean;
 }
 
-export function useColonias() {
-  const [colonias, setColonias] = useState<Colonia[]>([]);
+export function usePuntosAcopio() {
+  const [puntos, setPuntos] = useState<PuntoAcopio[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelado = false;
 
-    apiFetch<Colonia[]>("/api/colonias")
+    apiFetch<PuntoAcopio[]>("/api/puntosacopio")
       .then((data) => {
-        if (!cancelado) setColonias(data);
+        if (!cancelado) setPuntos(data);
       })
       .catch((err) => {
         if (!cancelado)
@@ -35,5 +39,5 @@ export function useColonias() {
     };
   }, []);
 
-  return { colonias, loading, error };
+  return { puntos, loading, error };
 }
