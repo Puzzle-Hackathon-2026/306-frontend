@@ -25,15 +25,13 @@ export default function VistaCiudadana() {
         </div>
         <ColoniaSelector value={colonia} onChange={setColonia} />
       </div>
-
       <EstadoTiempoReal colonia={colonia} info={info} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div>
+        {/*barra de calendario horizontal, denada marcelo*/}
         <CalendarioSemanal info={info} />
-        <ReportarProblema colonia={colonia} />
+        {/*got rid of reports 4 now, cambiara a ser un popup.*/}
       </div>
-
-      <Notificaciones />
+      {/*got rid of notis 4 now , va a ser un boton cascadaish para las notis*/}
     </section>
   );
 }
